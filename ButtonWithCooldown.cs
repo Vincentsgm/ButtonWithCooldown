@@ -15,7 +15,7 @@ namespace SwatCallouts.Menus.SpecialButtons
             Cooldown = cooldown;
             defaultDescription = description;
             lastTimePressed = DateTime.MinValue;
-            Activated += ButtonWithCooldown_Activated;
+            Activated += (s, e) => lastTimePressed = DateTime.Now;     
         }
 
         public override void Draw(float x, float y, float width, float height)
@@ -31,11 +31,6 @@ namespace SwatCallouts.Menus.SpecialButtons
                 Description = defaultDescription;
             }
             base.Draw(x, y, width, height);
-        }
-
-        private void ButtonWithCooldown_Activated(UIMenu sender, UIMenuItem selectedItem)
-        {
-            lastTimePressed = DateTime.Now;            
         }
     }
 }
